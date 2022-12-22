@@ -34,7 +34,7 @@ subbtn.addEventListener('click',()=>{
 console.log(newbook.title)
 
 function showbook(){
-document.getElementsByClassName('title').textContent = newbook.title;
+document.getElementsByClassName('title').innerHTML = newbook.title;
 console.log(newbook.title);
 }
 showbtn.addEventListener('click',showbook);
