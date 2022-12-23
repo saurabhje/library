@@ -55,13 +55,12 @@
 	justify-content: center;
 	align-items: center;
 	gap: 8px;
-	border: 2px solid rgba(0, 0, 0, 0.677);
+	box-shadow: rgba(17, 17, 26, 0.1) 0px 4px 16px, rgba(17, 17, 26, 0.1) 0px 8px 24px, rgba(17, 17, 26, 0.1) 0px 16px 56px;
 	border-radius: 15px;
 	height: 200px;
 	width: 200px;
 	padding: 10px;
 	margin: 20px;
-	background-color: #82dffbbf;
 	font-size: 25px;
   }
  .readbtn, .delBtn{
