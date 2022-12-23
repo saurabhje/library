@@ -45,7 +45,6 @@ function createbook(item){
     bookdiv.appendChild(pagediv);
 
     readbtn.classList.add('readbtn');
-    bookdiv.appendChild(readbtn);
     if(item.read===false) {
         readbtn.textContent = 'Not Read';
         readbtn.style.backgroundColor = '#e04f63';
@@ -53,6 +52,7 @@ function createbook(item){
         readbtn.textContent = 'Read';
         readbtn.style.backgroundColor = '#63da63'
     }
+    bookdiv.appendChild(readbtn);
 
     delbtn.classList.add('delBtn');
     delbtn.textContent = "Remove"
@@ -61,13 +61,13 @@ function createbook(item){
     bookdetails.appendChild(bookdiv);
     delbtn.addEventListener('click',()=>{
         myLibrary.splice(myLibrary.indexOf(item),1)
-        render();
+        kremlin();
     });
 } 
 
-function render() {
-    const display = document.getElementById('bookdetails');
-    const books = document.querySelectorAll('.book');
+function kremlin() {
+    const display = document.getElementById('bookdetails');//1
+    const books = document.querySelectorAll('.book'); //2
     books.forEach(book => display.removeChild(book)); //these three lines to prevent repeititive display
     for (let i=0; i<myLibrary.length; i++){
         createbook(myLibrary[i]);
@@ -80,7 +80,7 @@ function addBookToLibrary() {
     event.preventDefault();
     let newbook = new Book(title.value, author.value, pages.value, read.value);
     myLibrary.push(newbook);
-    render();
+    kremlin();
 }
 
 addbtn.addEventListener("click", ()=>{
