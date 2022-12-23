@@ -1,43 +1,64 @@
+let myLibrary = [];
+let addbtn = document.getElementById("addbook");
+let form = document.getElementById("form");
+let demo = document.getElementById("bookdetails");
 
-const addbtn = document.getElementById('addbtn');
-addbtn.addEventListener('click',()=>{
-    form.style.display ="block";
-})
-
-const subbtn = document.getElementById('subbtn');
-subbtn.addEventListener('click',showbook);
-
-const form = document.getElementById('form')
-const showbtn = document.getElementById('showbook')
+let i = 0;
 
 
-const library = [];
-
-function book(title,author,pages,read){
+function Book(title, author, pages, read) {
     this.title = title;
     this.author = author;
     this.pages = pages;
     this.read = read;
 }
+let title = document.getElementById("title");
+let author = document.getElementById("author");
+let pages = document.getElementById("pages");
+let read = document.getElementById("read");
+let subbtn = document.getElementById("subbtn");
 
-function addBooktoLibrary(event){
-    const title = document.getElementById('title').value
-    const author = document.getElementById('author').value;
-    const pages = document.getElementById('pages').value;
-    const read = document.getElementById('read').value;
-    event.preventDefault();
-    let newbook = new book(title,author,pages,read);
-    library.push(newbook);
+function addBookToLibrary() {
+    let newbook = new Book(title.value, author.value, pages.value, read.value);
+    myLibrary.push(newbook);
+    if (form.style.display != "none"){
+        form.style.display = "none";
+    }
+    const authdiv = document.createElement('div');
+    const titdiv = document.createElement('div');
+    const delbtn = document.createElement('button');
+    const pagediv = document.createElement('div');
+    const readbtn = document.createElement('button');
+
+    titdiv.textContent = myLibrary[i].title;    
+    demo.appendChild(titdiv);
+
+    authdiv.textContent = myLibrary[i].author;
+    demo.appendChild(authdiv);
+
+    pagediv.textContent = myLibrary[i].pages;
+    demo.appendChild(pagediv);
+
+    delbtn.textContent = "Remove"
+    demo.appendChild(delbtn);
+
+    demo.appendChild(readbtn);
+    if(myLibrary[i].read ===true){
+        readbtn.textContent = "Read";
+        readbtn.style.backgroundColor = "green";
+    }
+    else{
+        readbtn.style.backgroundColor = "red";
 }
+function handleForm(event) { event.preventDefault(); } 
+form.addEventListener('submit', handleForm);
+subbtn.addEventListener("click", addBookToLibrary)
 
-function showbook(){
-const libdiv = document.querySelector('.bookdetails');
-const bookdiv = document.createElement('div');
-bookdiv.setAttribute("class","title");
-bookdiv.textContent = newbook.title;
-libdiv.appendChild(bookdiv);
-console.log(newbook.title)
-
-}
-showbtn.addEventListener('click',showbook);
-
+addbtn.addEventListener("click", ()=>{
+    if (form.style.display == "none"){
+        form.style.display = "block";
+    }
+    else{
+        form.style.display = "none";
+    }
+});

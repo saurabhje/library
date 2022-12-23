@@ -10,19 +10,19 @@
 </head>
 <body>
     <div class="book">
-        <button type="button" id="addbtn">kre</button>
+        <button type="button" id="addbook">Add Book</button>
         <form  id="form" >
             <div class="title">
                 <label for="title">Book Title</label>
-                <input type="text" id="title"> 
+                <input type="text" name="title" id="title"> 
             </div>
             <div>
                 <label for="author">Author of Book</label>
-                <input type="text" id="author">
+                <input type="text" name="author" id="author">
             </div>
             <div>
                 <label for="pages">Pages</label>
-                <input type="number" id="pages" min="10">
+                <input type="number" id="pages" name="pages" min="10">
             </div>
             <div>
                 <label for="read">Read</label>
@@ -32,9 +32,9 @@
                 <button type="submit" id="subbtn">Submit</button>
             </div>
          </form>
-         <button type="button" id="showbook">Show Books</button> 
     </div>
-    <div class="bookdetails">
+    <div id="bookdetails">
+
     </div>
 
 </body>
