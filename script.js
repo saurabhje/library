@@ -2,9 +2,8 @@ let myLibrary = [];
 let addbtn = document.getElementById("addbook");
 let form = document.getElementById("form");
 let demo = document.getElementById("bookdetails");
-
-let i = 0;
-
+let invalid = document.getElementById('invalid');
+let inputs = document.querySelector('#title,#author,#read,#pages')
 
 function Book(title, author, pages, read) {
     this.title = title;
@@ -12,53 +11,79 @@ function Book(title, author, pages, read) {
     this.pages = pages;
     this.read = read;
 }
+
+
 let title = document.getElementById("title");
 let author = document.getElementById("author");
 let pages = document.getElementById("pages");
 let read = document.getElementById("read");
 let subbtn = document.getElementById("subbtn");
 
-function addBookToLibrary() {
-    let newbook = new Book(title.value, author.value, pages.value, read.value);
-    myLibrary.push(newbook);
-    if (form.style.display != "none"){
-        form.style.display = "none";
-    }
+
+subbtn.addEventListener("click", addBookToLibrary)
+
+
+
+function createbook(item){
+    const bookdiv = document.createElement('div');
     const authdiv = document.createElement('div');
     const titdiv = document.createElement('div');
     const delbtn = document.createElement('button');
     const pagediv = document.createElement('div');
     const readbtn = document.createElement('button');
 
-    titdiv.textContent = myLibrary[i].title;    
-    demo.appendChild(titdiv);
+    bookdiv.classList.add('book');
+    bookdiv.setAttribute('id', myLibrary.indexOf(item));
 
-    authdiv.textContent = myLibrary[i].author;
-    demo.appendChild(authdiv);
+    titdiv.textContent = `Title : ${item.title}`;    
+    bookdiv.appendChild(titdiv);
 
-    pagediv.textContent = myLibrary[i].pages;
-    demo.appendChild(pagediv);
+    authdiv.textContent =`author : ${item.author}`;
+    bookdiv.appendChild(authdiv);
 
-    delbtn.textContent = "Remove"
-    demo.appendChild(delbtn);
+    pagediv.textContent =`Pages : ${item.pages}`;
+    bookdiv.appendChild(pagediv);
 
-    demo.appendChild(readbtn);
-    if(myLibrary[i].read ===true){
-        readbtn.textContent = "Read";
-        readbtn.style.backgroundColor = "green";
+    readbtn.classList.add('readbtn');
+    bookdiv.appendChild(readbtn);
+    if(item.read===false) {
+        readbtn.textContent = 'Not Read';
+        readbtn.style.backgroundColor = '#e04f63';
+    }else {
+        readbtn.textContent = 'Read';
+        readbtn.style.backgroundColor = '#63da63'
     }
-    else{
-        readbtn.style.backgroundColor = "red";
+
+    delbtn.classList.add('delBtn');
+    delbtn.textContent = "Remove"
+    bookdiv.appendChild(delbtn);
+    
+    bookdetails.appendChild(bookdiv);
+    delbtn.addEventListener('click',()=>{
+        myLibrary.splice(myLibrary.indexOf(item),1)
+        render();
+    });
+} 
+
+function render() {
+    const display = document.getElementById('bookdetails');
+    const books = document.querySelectorAll('.book');
+    books.forEach(book => display.removeChild(book)); //these three lines to prevent repeititive display
+    for (let i=0; i<myLibrary.length; i++){
+        createbook(myLibrary[i]);
+    }
 }
-function handleForm(event) { event.preventDefault(); } 
-form.addEventListener('submit', handleForm);
-subbtn.addEventListener("click", addBookToLibrary)
+
+
+function addBookToLibrary() {
+    form.style.display ="none";
+    event.preventDefault();
+    let newbook = new Book(title.value, author.value, pages.value, read.value);
+    myLibrary.push(newbook);
+    render();
+}
 
 addbtn.addEventListener("click", ()=>{
-    if (form.style.display == "none"){
-        form.style.display = "block";
-    }
-    else{
-        form.style.display = "none";
-    }
+    form.style.display="block";
+    form.reset();
 });
