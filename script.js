@@ -49,7 +49,7 @@ function createbook(item){
 
 
     readbtn.classList.add('readBtn')    
-    if(item.read.checked==false) {
+    if(item.read===false) {
         readbtn.textContent = 'Not Read';
         readbtn.style.backgroundColor = '#ff0404d8';
     }else {
