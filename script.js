@@ -88,7 +88,7 @@ function kremlin() {
 function addBookToLibrary() {
     form.style.display ="none";
     event.preventDefault();
-    let newbook = new Book(title.value, author.value, pages.value, read.value);
+    let newbook = new Book(title.value, author.value, pages.value, read.checked);
     if(inputs.value!='')
     {       myLibrary.push(newbook);
            }
