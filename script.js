@@ -4,7 +4,10 @@ let form = document.getElementById("form");
 let demo = document.getElementById("bookdetails");
 let invalid = document.getElementById('invalid');
 let inputs = document.querySelector('#title,#author,#read,#pages')
-
+let close = document.getElementById('close');
+close.addEventListener('click',()=>{
+    form.style.display ='none';
+})
 function Book(title, author, pages, read) {
     this.title = title;
     this.author = author;
@@ -46,7 +49,7 @@ function createbook(item){
 
 
     readbtn.classList.add('readBtn')    
-    if(item.read===false) {
+    if(item.read.checked==false) {
         readbtn.textContent = 'Not Read';
         readbtn.style.backgroundColor = '#ff0404d8';
     }else {
