@@ -12,7 +12,7 @@
     <div id="newbtn">
         <button type="button" id="addbook">Add Book</button>
     </div>
-    <form  id="form" action="#" novalidate>
+    <form  id="form" action="#" novalidate method="post">
         <div class="title">
             <label for="title">Book Title</label>
             <input type="text" name="title" id="title" required/> 
@@ -27,13 +27,11 @@
         </div>
         <div>
             <label for="read">Read</label>
-            <input type="checkbox" id="read" name="status" value="read" required/>
+            <input type='checkbox' id='read' name='read' value='yes'>
         </div>
             <button type="submit" id="subbtn">Submit</button>
     </form>
     <div id="bookdetails"></div>
-    <div id="invalid">
-
     </div>
 </body>
 </html>

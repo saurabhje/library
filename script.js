@@ -20,7 +20,7 @@ let read = document.getElementById("read");
 let subbtn = document.getElementById("subbtn");
 
 
-subbtn.addEventListener("click", addBookToLibrary)
+form.addEventListener('submit',addBookToLibrary);
 
 
 
@@ -38,21 +38,27 @@ function createbook(item){
     titdiv.textContent = `Title : ${item.title}`;    
     bookdiv.appendChild(titdiv);
 
-    authdiv.textContent =`author : ${item.author}`;
+    authdiv.textContent =`Author : ${item.author}`;
     bookdiv.appendChild(authdiv);
 
     pagediv.textContent =`Pages : ${item.pages}`;
     bookdiv.appendChild(pagediv);
 
-    readbtn.classList.add('readbtn');
+
+    readbtn.classList.add('readBtn')    
+    bookdiv.appendChild(readbtn);
     if(item.read===false) {
         readbtn.textContent = 'Not Read';
-        readbtn.style.backgroundColor = '#e04f63';
+        readbtn.style.backgroundColor = '#ff0404d8';
     }else {
         readbtn.textContent = 'Read';
         readbtn.style.backgroundColor = '#63da63'
     }
-    bookdiv.appendChild(readbtn);
+
+    readbtn.addEventListener('click', () => { 
+        item.read = !item.read; 
+        kremlin();
+    }); 
 
     delbtn.classList.add('delBtn');
     delbtn.textContent = "Remove"
@@ -63,7 +69,7 @@ function createbook(item){
         myLibrary.splice(myLibrary.indexOf(item),1)
         kremlin();
     });
-} 
+}
 
 function kremlin() {
     const display = document.getElementById('bookdetails');//1
@@ -75,15 +81,23 @@ function kremlin() {
 }
 
 
+
 function addBookToLibrary() {
     form.style.display ="none";
     event.preventDefault();
     let newbook = new Book(title.value, author.value, pages.value, read.value);
-    myLibrary.push(newbook);
+    if(inputs.value!='')
+    {       myLibrary.push(newbook);
+           }
+   else{
+           alert("Invalid/empty fields");
+           form.reset();
+           }
     kremlin();
 }
 
-addbtn.addEventListener("click", ()=>{
+addbtn.addEventListener("click",()=>{
+    form.style.backgroundColor = "#1e1d2e45";
     form.style.display="block";
     form.reset();
 });
