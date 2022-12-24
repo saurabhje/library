@@ -32,7 +32,8 @@
 	border-radius: 5px;
 	font-size: 23px;
 	border-left: solid 12px rgb(157, 255, 0);
-	color: white;
+	background-color: rgba(0, 0, 0, 0.859);
+	color: rgb(224, 224, 224);
 }
 #form >div{
 	margin: 10px;
@@ -53,6 +54,7 @@
 	padding: 3px 20px;
 
 }
+
 #bookdetails{
 	margin: auto;
 	display: flex;
@@ -84,21 +86,4 @@
  }
 .readBtn:hover{
 	color: white;
-}
-
-#invalid{
-	display: none;
-	text-align: center;
-	font-size: 20px;
-	position: absolute;
-	height: 70px;
-	width: 200px;
-	top: 30vh;
-	left: 42vw;
-	border-radius: 6px;
-	border: solid 2px rgba(0, 0, 0, 0.606);
-}
-.text{
-	max-width: 90%;
-	margin: 5% auto;
 }

@@ -46,7 +46,6 @@ function createbook(item){
 
 
     readbtn.classList.add('readBtn')    
-    bookdiv.appendChild(readbtn);
     if(item.read===false) {
         readbtn.textContent = 'Not Read';
         readbtn.style.backgroundColor = '#ff0404d8';
@@ -54,6 +53,7 @@ function createbook(item){
         readbtn.textContent = 'Read';
         readbtn.style.backgroundColor = '#63da63'
     }
+    bookdiv.appendChild(readbtn);
 
     readbtn.addEventListener('click', () => { 
         item.read = !item.read; 
@@ -97,7 +97,6 @@ function addBookToLibrary() {
 }
 
 addbtn.addEventListener("click",()=>{
-    form.style.backgroundColor = "#1e1d2e45";
     form.style.display="block";
     form.reset();
 });
